@@ -1,0 +1,27 @@
+.background{
+    height: 10vh;
+    background-size: cover;
+
+}
+.padding{
+    &__2{
+        padding: 2rem;
+    }
+}
+.flex{
+    display: flex;
+}
+.justify-center{
+    justify-content: center;
+}
+.justify-around{
+    justify-content: space-around;
+}
+.items-center{
+    align-items: center;
+}
+.border{
+    border: 1px solid rgb(204, 201, 201);
+    padding: 1rem;
+    border-radius: 0.625rem;
+}
