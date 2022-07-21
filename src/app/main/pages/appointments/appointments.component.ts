@@ -9,60 +9,59 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 
 export class AppointmentsComponent implements OnInit {
-  form:any;
+  today=new Date().getMonth()+1;
   months:customMonth[]=[{
-    value:0,
+    value:1,
     name:'January',
   },{
-    value:1,
+    value:2,
     name:'February'
   },{
-    value:2,
+    value:3,
     name:'March'
   },{
-    value:3,
+    value:4,
     name:'April',
   },{
-    value:4,
+    value:5,
     name:'May',
   },{
-    value:5,
+    value:6,
     name:'June',
   },{
-    value:6,
+    value:7,
     name:'July',
   },{
-    value:7,
+    value:8,
     name:'August',
   },{
-    value:8,
+    value:9,
     name:'Septempber'
   },{
-    value:9,
+    value:10,
     name:'October'
   },{
-    value:10,
+    value:11,
     name:'November'
   },{
-    value:11,
+    value:12,
     name:'December'
   }];
   constructor(private router:Router,private route: ActivatedRoute) {
        
   }
   ngOnInit(): void {
-    let today;
     let id=this.route.snapshot.paramMap.get('id');
-    console.log(id);
     if(id){
-      today=id;
-    }else{
-      today=new Date().getMonth();
+      this.today=parseInt(id);
     }
-    this.router.navigate([`/month/${today}`])
-    this.form=new FormGroup({
-        month:new FormControl(today?today:''),
-    })
+    if(!id){
+      this.router.navigate([`/month/${this.today}`])
+    }
+    
+  }
+  changeMonth(month:number){
+    this.router.navigate([`/month/${month}`])
   }
 
 }

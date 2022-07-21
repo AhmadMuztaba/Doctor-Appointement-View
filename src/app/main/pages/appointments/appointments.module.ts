@@ -4,6 +4,8 @@ import { CommonModule } from '@angular/common';
 import { AppointmentsRoutingModule } from './appointments-routing.module';
 import { AppointmentsComponent } from './appointments.component';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { CalenderComponent } from './calender/calender.component';
+import { CalenderModule } from './calender/calender.module';
 @NgModule({
   declarations: [
     AppointmentsComponent
@@ -11,7 +13,8 @@ import { SharedModule } from 'src/app/shared/shared.module';
   imports: [
     CommonModule,
     AppointmentsRoutingModule,
-    SharedModule
+    SharedModule,
+    CalenderModule
   ]
 })
 export class AppointmentsModule { }

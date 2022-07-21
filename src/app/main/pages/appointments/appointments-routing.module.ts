@@ -6,13 +6,9 @@ import { AppointmentsComponent } from './appointments.component';
 const routes: Routes = [{
   path:'',
   component:AppointmentsComponent,
-  children:[
-    {
-      path:'month/:id',
-      loadChildren:()=>
-        import('./calender/calender.module').then((m)=>m.CalenderModule)
-    }
-  ]
+},{
+  path:'month/:id',
+  component:AppointmentsComponent
 }];
 
 @NgModule({

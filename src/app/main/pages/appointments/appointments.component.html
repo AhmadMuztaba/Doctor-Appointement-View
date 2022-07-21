@@ -1,21 +1,22 @@
 <div>
     <div class="flex items-center justify-around">
-    <div >
-    <form class="background padding__2" [formGroup]="form" >
+   
+    <div class="background padding__2" >
         <mat-form-field appearance="outline">
             <mat-label>Months</mat-label>
-            <mat-select formControlName="month">
+            <mat-select [value]="today" (selectionChange)="changeMonth($event.value)">
               <!-- <mat-option >None</mat-option> -->
               <mat-option *ngFor="let month of months" [value]="month.value">{{month.name}}</mat-option>
             </mat-select>
         </mat-form-field>
-    </form>
     </div>
+    
     <div>
         <div class="border" style="cursor:pointer">
             Create Appointment
         </div>
     </div>
-    <router-outlet></router-outlet>
+    
 </div>
+<app-calender></app-calender>
 </div>
