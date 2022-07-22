@@ -1,1 +1,20 @@
-<p>calender works!</p>
+<mat-grid-list cols="7" rowHeight="70px">
+    <mat-grid-tile
+        *ngFor="let day of days"
+        [style.background]="'#FFF'"
+        [style.border]="'1px solid rgba(82, 63, 105, .06)'"
+        >
+      {{day}}
+    </mat-grid-tile>
+</mat-grid-list>
+<mat-grid-list cols="7" rowHeight="200px">
+    <mat-grid-tile
+        *ngFor="let day of numberOfDays"
+        [style.background]="'#FFF'"
+        [style.border]="'1px solid rgba(82, 63, 105, .06)'"
+        >
+      <div class="date" *ngIf="day!=0">
+        {{day}}
+      </div>
+    </mat-grid-tile>
+</mat-grid-list>

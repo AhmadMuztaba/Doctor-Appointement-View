@@ -13,6 +13,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatSelectModule } from '@angular/material/select';
+import {MatGridListModule} from '@angular/material/grid-list';
+
 @NgModule({
   declarations: [
   ],
@@ -35,7 +37,8 @@ import { MatSelectModule } from '@angular/material/select';
     MatListModule,
     RouterModule,
     ReactiveFormsModule,
-    MatSelectModule
+    MatSelectModule,
+    MatGridListModule
   ],
   exports:[
     CommonModule,
@@ -56,7 +59,8 @@ import { MatSelectModule } from '@angular/material/select';
     MatFormFieldModule,
     MatInputModule,
     MatAutocompleteModule,
-    MatSelectModule
+    MatSelectModule,
+    MatGridListModule
   ]
 })
 export class SharedModule { }
