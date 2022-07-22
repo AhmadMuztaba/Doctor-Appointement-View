@@ -22,19 +22,26 @@
         background-color: aliceblue;
         padding: 0.1rem;
         cursor: pointer;
+        font-family: monospace;
+        font-size: .8rem;
         margin-bottom: 0.2rem;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        width: 100%;
+        display: inline-block;
+        &--name{
+            @media only screen and(max-width:900px){
+                display: none;
+            }
+        }
+        &--text{
+            
+        }
     }
     &::-webkit-scrollbar {
         display: none;
         -ms-overflow-style: none;
         scrollbar-width: none; 
       }
-}
-.create{
-    &__appointment{
-        &:hover{
-            transform: scale(1.01);
-            box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
-        }
-    }
 }

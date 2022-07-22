@@ -50,6 +50,7 @@ export class AppointmentsComponent implements OnInit {
     value:12,
     name:'December'
   }];
+  allData:Appointment[]=[];
   constructor(private router:Router,private route: ActivatedRoute,private dialog:MatDialog) {
        
   }
@@ -70,12 +71,13 @@ export class AppointmentsComponent implements OnInit {
       
     }
     if(!id){
-      this.router.navigate([`/month/${this.today}`])
+      this.router.navigate([`/month/${this.today}`],{queryParams:{year:new Date().getFullYear()}})
     }
+    this.allData=this.getData('appointment');
     
   }
   changeMonth(month:number){
-    this.router.navigate([`/month/${month}`])
+    this.router.navigate([`/month/${month}`],{queryParams:{year:new Date().getFullYear()}})
   }
   saveData(key:string,value:any){
     localStorage.setItem(key,JSON.stringify(value));
@@ -93,15 +95,15 @@ export class AppointmentsComponent implements OnInit {
     this.dialog.open(AppointmentCreateEditComponent,{autoFocus:false}).afterClosed().subscribe((data:Appointment)=>{
       if(data){
         data.id=uuidv4();
-        let savedData=this.getData('appointment');
-        savedData.push(data);
-        this.saveData('appointment',savedData);
+        this.allData=this.getData('appointment');
+        this.allData=[...this.allData,data];
+        this.saveData('appointment',this.allData);
         Swal.fire(
           'Created',
           '',
           'success'
         )
-        
+
       }
     })
   }

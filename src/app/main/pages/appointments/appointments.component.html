@@ -1,21 +1,20 @@
 <div>
     <div class="flex items-center justify-around">
-    <div class="background padding__2" >
-        <mat-form-field appearance="outline">
-            <mat-label>Months</mat-label>
-            <mat-select [value]="today" (selectionChange)="changeMonth($event.value)">
-              <!-- <mat-option >None</mat-option> -->
-              <mat-option *ngFor="let month of months" [value]="month.value">{{month.name}}</mat-option>
-            </mat-select>
-        </mat-form-field>
-    </div>
+        <div class="background padding__2">
+            <mat-form-field appearance="outline">
+                <mat-label>Months</mat-label>
+                <mat-select [value]="today" (selectionChange)="changeMonth($event.value)">
+                    <!-- <mat-option >None</mat-option> -->
+                    <mat-option *ngFor="let month of months" [value]="month.value">{{month.name}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
 
-    <div>
-        <div class="border create__appointment" style="cursor:pointer" (click)="create()">
-            <mat-icon>add_circle_outline</mat-icon> <span style="margin:0 .2rem">Create Appointment</span>
+        <div>
+            <div class="border create__appointment" style="cursor:pointer" (click)="create()">
+                <mat-icon>add_circle_outline</mat-icon> <span style="margin:0 .2rem">Create Appointment</span>
+            </div>
         </div>
     </div>
-    
-</div>
-<app-calender></app-calender>
+    <app-calender [data]="allData"></app-calender>
 </div>

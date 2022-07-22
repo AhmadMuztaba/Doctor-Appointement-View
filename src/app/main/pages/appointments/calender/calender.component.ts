@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnInit,OnChanges, SimpleChange } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 import { Appointment } from 'src/app/Models/appointment';
@@ -8,25 +8,54 @@ import Swal from 'sweetalert2';
 @Component({
   selector: 'app-calender',
   templateUrl: './calender.component.html',
-  styleUrls: ['./calender.component.scss']
+  styleUrls: ['./calender.component.scss'],
+  changeDetection:ChangeDetectionStrategy.Default
 })
 export class CalenderComponent implements OnInit {
+  @Input() data:any;
   days=['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'];
   numberOfDaysData:any[]=[];
   allData:Appointment[]=[];
   filterData:Appointment[]=[];
+  year:Number=2022;
   constructor(private route: ActivatedRoute,private dialog:MatDialog) { }
 
   ngOnInit(): void {
+    this.render();
+  }
+  ngOnChanges(changes:any) {
+    if(changes.data)
+    {
+       this.render()
+    }
+ 
+  }
+  render(){
+    this.route.queryParams.subscribe(params=>{
+      if(params['year']){
+        if(parseInt(params['year'])>2021 && parseInt(params['year'])<3000){
+          this.year=parseInt(params['year']);
+        }
+        if(parseInt(params['year'])<2021 || parseInt(params['year'])>3000){
+          Swal.fire({
+            icon: 'error',
+            title: `${params['year']} can not be converted into year`,
+            text: 'Will show 2022 for now',
+           
+          })
+        }
+        
+      }
+    })
     this.route.params.subscribe(params => {
       let month = params['id'];
       if(month){
-        let startDay=this.getDay(2022,month);
+        let startDay=this.getDay(this.year,month);
         if(startDay){
           this.numberOfDaysData=Array(startDay-1).fill({day:0,data:[]});
-        let daysInMonth=this.getDaysInMonth(2022,month);
+        let daysInMonth=this.getDaysInMonth(this.year,month);
        
-      this.allData=this.getData('appointment');
+      this.allData=this.data;
         this.filterData=this.allData.filter((appoint:Appointment)=>{
           return (new Date(appoint.date).getMonth()+1)==month;
         })
@@ -85,7 +114,7 @@ export class CalenderComponent implements OnInit {
           '',
           'success'
         )
-        this.ngOnInit();
+        this.render();
       }
     })
   }
