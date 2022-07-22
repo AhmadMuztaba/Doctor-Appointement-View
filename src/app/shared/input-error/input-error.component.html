@@ -1,0 +1,20 @@
+<div *ngIf="controls?.touched && controls?.errors" class="error-group">
+    <div *ngIf="controls?.hasError('required')">
+     <mat-error>{{fieldName}} is required</mat-error>
+    </div>
+    <div *ngIf="controls?.hasError('maxlength')" role="alert">
+        <mat-error> Max Length is {{controls.errors['maxlength'].requiredLength}}</mat-error>
+    </div>
+    <div *ngIf="controls?.hasError('minlength')" role="alert">
+        <mat-error> Min Length is {{controls.errors['minlength'].requiredLength}}</mat-error>
+    </div>
+    <div *ngIf="controls?.hasError('email')" role="alert">
+        <mat-error>Email Not Valid</mat-error>
+    </div>
+    <div *ngIf="controls?.hasError('pattern')" role="alert">
+        <mat-error> pattern Not matched</mat-error>
+    </div>
+    <div *ngIf="controls?.hasError('match')" role="alert">
+        <mat-error>  match is required.</mat-error>
+    </div>
+</div>

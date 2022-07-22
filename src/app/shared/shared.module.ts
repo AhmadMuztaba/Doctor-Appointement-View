@@ -14,9 +14,11 @@ import { MatInputModule } from '@angular/material/input';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatSelectModule } from '@angular/material/select';
 import {MatGridListModule} from '@angular/material/grid-list';
-
+import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
+import { InputErrorComponent } from './input-error/input-error.component';
 @NgModule({
   declarations: [
+    InputErrorComponent
   ],
   imports: [
     CommonModule,
@@ -38,7 +40,8 @@ import {MatGridListModule} from '@angular/material/grid-list';
     RouterModule,
     ReactiveFormsModule,
     MatSelectModule,
-    MatGridListModule
+    MatGridListModule,
+    MatDialogModule
   ],
   exports:[
     CommonModule,
@@ -60,7 +63,9 @@ import {MatGridListModule} from '@angular/material/grid-list';
     MatInputModule,
     MatAutocompleteModule,
     MatSelectModule,
-    MatGridListModule
+    MatGridListModule,
+    MatDialogModule,
+    InputErrorComponent
   ]
 })
 export class SharedModule { }
