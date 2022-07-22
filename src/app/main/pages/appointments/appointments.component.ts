@@ -77,7 +77,7 @@ export class AppointmentsComponent implements OnInit {
   changeMonth(month:number){
     this.router.navigate([`/month/${month}`])
   }
-  saveData(key:string,value:string){
+  saveData(key:string,value:any){
     localStorage.setItem(key,JSON.stringify(value));
   }
   getData(key:string):any{
@@ -90,14 +90,19 @@ export class AppointmentsComponent implements OnInit {
     }
    }
   create(){
-    this.dialog.open(AppointmentCreateEditComponent).afterClosed().subscribe((data:Appointment)=>{
+    this.dialog.open(AppointmentCreateEditComponent,{autoFocus:false}).afterClosed().subscribe((data:Appointment)=>{
       if(data){
         data.id=uuidv4();
         let savedData=this.getData('appointment');
         savedData.push(data);
         this.saveData('appointment',savedData);
+        Swal.fire(
+          'Created',
+          '',
+          'success'
+        )
+        
       }
-     
     })
   }
 

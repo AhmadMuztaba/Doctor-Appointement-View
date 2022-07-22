@@ -7,7 +7,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
   styleUrls: ['./appointment-create-edit.component.scss']
 })
 export class AppointmentCreateEditComponent implements OnInit {
-  mode: "create" | "update" = "create";
+  mode: "create" | "update"| "read" = "create";
   form:any;
   today:string='';
   constructor(@Inject(MAT_DIALOG_DATA) public defaults: any,
@@ -16,8 +16,12 @@ export class AppointmentCreateEditComponent implements OnInit {
   ngOnInit(): void {
     this.today=new Date().toISOString().slice(0, 10);;
     if (this.defaults) {
-      console.log(this.defaults);
-      this.mode = "update";
+      if(this.defaults.mode=="read"){
+        this.mode="read";
+      }else{
+        this.mode = "update";
+      }
+      
       //this.countrySelected(this.defaults.country);'
     } else {
       this.defaults = {};
@@ -46,6 +50,9 @@ export class AppointmentCreateEditComponent implements OnInit {
     } else if (this.mode === "update") {
       this.updateAppointment();
     }
+  }
+  modeChangeToUpdate(){
+    this.mode='update'
   }
   createAppointment(){
     if(this.form.valid){

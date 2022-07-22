@@ -1,3 +1,6 @@
+
+<div>
+
 <mat-grid-list cols="7" rowHeight="70px">
     <mat-grid-tile
         *ngFor="let day of days"
@@ -9,12 +12,18 @@
 </mat-grid-list>
 <mat-grid-list cols="7" rowHeight="200px">
     <mat-grid-tile
-        *ngFor="let day of numberOfDays"
+        *ngFor="let day of numberOfDaysData"
         [style.background]="'#FFF'"
         [style.border]="'1px solid rgba(82, 63, 105, .06)'"
         >
-      <div class="date" *ngIf="day!=0">
-        {{day}}
+      <div class="date" *ngIf="day?.day!=0">
+        {{day.day}}
       </div>
+      <div class="appointment">
+      <div class="appointment__each"  *ngFor="let data of day.data;let i=index" (click)="open(data)">
+        Appointment {{i+1}} ({{data.firstName}})
+      </div>
+    </div>
     </mat-grid-tile>
 </mat-grid-list>
+</div>

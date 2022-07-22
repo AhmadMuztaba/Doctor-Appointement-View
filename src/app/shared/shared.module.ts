@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
+import {MatMenuModule} from '@angular/material/menu';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
@@ -16,6 +16,7 @@ import { MatSelectModule } from '@angular/material/select';
 import {MatGridListModule} from '@angular/material/grid-list';
 import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { InputErrorComponent } from './input-error/input-error.component';
+
 @NgModule({
   declarations: [
     InputErrorComponent
@@ -41,7 +42,8 @@ import { InputErrorComponent } from './input-error/input-error.component';
     ReactiveFormsModule,
     MatSelectModule,
     MatGridListModule,
-    MatDialogModule
+    MatDialogModule,
+    MatMenuModule
   ],
   exports:[
     CommonModule,
@@ -65,6 +67,7 @@ import { InputErrorComponent } from './input-error/input-error.component';
     MatSelectModule,
     MatGridListModule,
     MatDialogModule,
+    MatMenuModule,
     InputErrorComponent
   ]
 })

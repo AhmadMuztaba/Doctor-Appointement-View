@@ -1,5 +1,23 @@
 <form (ngSubmit)="save()" [formGroup]="form">
     <div fxLayout="row" fxLayoutAlign="start center" mat-dialog-title>
+        <button
+        [matMenuTriggerFor]="settingsMenu"
+        class="text-secondary"
+        mat-icon-button
+        type="button"
+        *ngIf="mode=='read'"
+      >
+        <mat-icon>more_vert</mat-icon>
+      </button>
+  
+      <button
+        class="text-secondary"
+        mat-dialog-close
+        mat-icon-button
+        type="button"
+      >
+        <mat-icon>close</mat-icon>
+      </button>
     </div>
 
     <mat-divider class=""></mat-divider>
@@ -8,7 +26,7 @@
             <div class="mx-1">
                 <mat-form-field appearance="outline">
                     <mat-label>First Name</mat-label>
-                    <input  formControlName="firstName" matInput />
+                    <input [readonly]="mode=='read'"  formControlName="firstName" matInput />
                     
                 </mat-form-field>
                 <app-input-error [controls]="this.form.controls['firstName']" [fieldName]="'First Name'"></app-input-error>
@@ -16,16 +34,16 @@
             <div class="mx-1">
                 <mat-form-field appearance="outline">
                     <mat-label>Last Name</mat-label>
-                    <input formControlName="lastName" matInput />
+                    <input [readonly]="mode=='read'" formControlName="lastName" matInput />
                 </mat-form-field>
                 <app-input-error [controls]="this.form.controls['lastName']" [fieldName]="'Last Name'"></app-input-error>
             </div>
         </div>
         <div class="flex">
             <div class="mx-1">
-            <mat-form-field appearance="outline">
+            <mat-form-field  appearance="outline">
                 <mat-label>Gender</mat-label>
-                <mat-select formControlName="gender">
+                <mat-select [disabled]="mode=='read'" formControlName="gender">
                     <mat-option disabled>Select any one</mat-option>
                   <mat-option [value]="'male'">Male</mat-option>
                   <mat-option [value]="'female'">Female</mat-option>
@@ -35,7 +53,7 @@
         <div class="mx-1">
             <mat-form-field appearance="outline">
                 <mat-label>Age</mat-label>
-                <input formControlName="age" type="number" matInput />
+                <input [readonly]="mode=='read'" formControlName="age" type="number" matInput />
             </mat-form-field>
             <app-input-error [controls]="this.form.controls['age']" [fieldName]="'Age'"></app-input-error>
         </div>
@@ -44,7 +62,7 @@
         <div class="mx-1">
             <mat-form-field appearance="outline">
                 <mat-label>Email</mat-label>
-                <input formControlName="email" type="email" matInput />
+                <input [readonly]="mode=='read'" formControlName="email" type="email" matInput />
             </mat-form-field>
             <app-input-error [controls]="this.form.controls['email']" [fieldName]="'Email'"></app-input-error>
         </div>
@@ -53,14 +71,14 @@
             <div class="mx-1">
                 <mat-form-field appearance="outline">
                     <mat-label>Date</mat-label>
-                    <input [min]="today" formControlName="date" type="date" matInput />
+                    <input [readonly]="mode=='read'" [min]="today" formControlName="date" type="date" matInput />
                 </mat-form-field>
                 <app-input-error [controls]="this.form.controls['date']" [fieldName]="'date'"></app-input-error>
             </div>
             <div class="mx-1">
                 <mat-form-field appearance="outline">
                     <mat-label>Time</mat-label>
-                    <input formControlName="time" type="time" matInput />
+                    <input [readonly]="mode=='read'" formControlName="time" type="time" matInput />
                 </mat-form-field>
                 <app-input-error [controls]="this.form.controls['time']" [fieldName]="'time'"></app-input-error>
             </div>
@@ -78,3 +96,9 @@
         </button>
     </mat-dialog-actions>
 </form>
+<mat-menu #settingsMenu="matMenu" xPosition="before" yPosition="below">
+    <button mat-menu-item (click)="modeChangeToUpdate()">
+      <mat-icon>autorenew</mat-icon>
+      <span>Update</span>
+    </button>
+</mat-menu>
